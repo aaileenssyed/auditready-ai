@@ -8,8 +8,8 @@ The current MVP focuses on **NIST CSF 2.0 readiness** and generates a profession
 
 ## Live Demo
 
-**Live App:** Add your Vercel link here  
-**Repository:** Add your GitHub repo link here  
+**Live App:** https://auditready-ai-five.vercel.app/
+**Repository:** https://github.com/aaileenssyed/auditready-ai
 
 ---
 
@@ -121,7 +121,6 @@ If no assessment has been completed, the report page loads a demo organization p
 
 ## How It Works
 
-```text
 Company Profile
       ↓
 NIST CSF Questionnaire
@@ -137,7 +136,6 @@ Risk Summary
 30/60/90-Day Roadmap
       ↓
 PDF Readiness Report
-````
 
 The readiness score is calculated using deterministic rules instead of relying fully on AI. This keeps the scoring process explainable and easier to audit.
 
@@ -161,7 +159,6 @@ Each question is mapped to:
 
 Example control object:
 
-```ts
 {
   id: "PR-001",
   function: "Protect",
@@ -179,7 +176,6 @@ Example control object:
   ],
   remediation: "Enable MFA for all privileged accounts and document exceptions."
 }
-```
 
 ---
 
@@ -196,7 +192,6 @@ Example control object:
 
 ## Project Structure
 
-```text
 auditready-ai/
   app/
     page.tsx
@@ -244,7 +239,6 @@ auditready-ai/
 
   public/
     auditready-logo.png
-```
 
 ---
 
@@ -420,22 +414,3 @@ Cybersecurity, IT Support, GRC, and AI-focused portfolio project.
 ## License
 
 This project is intended as a public portfolio and educational project.
-
-You may use, study, and adapt the code for learning purposes. Add a formal license later if you plan to make it open source.
-
-````
-
-Before committing, replace these two lines near the top:
-
-```md
-**Live App:** Add your Vercel link here  
-**Repository:** Add your GitHub repo link here  
-````
-
-Then push:
-
-```bash
-git add README.md
-git commit -m "Update README for AuditReady AI"
-git push
-```
