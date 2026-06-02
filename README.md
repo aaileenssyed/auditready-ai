@@ -1,3 +1,4 @@
+![AuditReady AI Build Check](https://github.com/aaileenssyed/auditready-ai/actions/workflows/ci.yml/badge.svg)
 # AuditReady AI + DevOps Reliability Lab
 
 **AuditReady AI** is a cybersecurity and GRC readiness tool that helps organizations assess their compliance posture, identify control gaps, and generate audit-ready remediation guidance.
@@ -602,7 +603,7 @@ Organizations should consult qualified cybersecurity, legal, and compliance prof
 
 ## Author
 
-Built by **Aaileen Sarwar Syed**
+Built by **Aaileen Sarwar Syed & Rayyan Sarwar Syed**
 
 Cybersecurity, IT Support, GRC, AI, and DevOps-focused portfolio project.
 
@@ -611,15 +612,3 @@ Cybersecurity, IT Support, GRC, AI, and DevOps-focused portfolio project.
 ## License
 
 This project is intended as a public portfolio and educational project.
-
-You may use, study, and adapt the code for learning purposes. Add a formal license later if this project is maintained as a formal open-source tool.
-
-````
-
-Then run:
-
-```bash
-git add README.md
-git commit -m "Clean and restructure README"
-git push
-````
