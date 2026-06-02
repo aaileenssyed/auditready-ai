@@ -1,19 +1,13 @@
-name: AuditReady AI CI
+name: Weekly Build Health Check
 
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    branches:
-      - master
-      - main
+  schedule:
+    - cron: "0 14 * * 1"
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Install and Build Next.js App
+  weekly-build:
+    name: Weekly Production Build Validation
     runs-on: ubuntu-latest
 
     steps:
@@ -29,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build production app
+      - name: Build project
         run: npm run build

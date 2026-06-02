@@ -1,0 +1,29 @@
+name: Live Health Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * 1"
+
+jobs:
+  health-check:
+    name: Check Live Application Health
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check health endpoint
+        run: |
+          URL="https://your-vercel-link.vercel.app/api/health"
+          echo "Checking $URL"
+
+          STATUS_CODE=$(curl -s -o response.json -w "%{http_code}" "$URL")
+
+          echo "Status code: $STATUS_CODE"
+          cat response.json
+
+          if [ "$STATUS_CODE" != "200" ]; then
+            echo "Health check failed"
+            exit 1
+          fi
+
+          echo "Health check passed"

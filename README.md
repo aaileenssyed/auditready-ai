@@ -1,14 +1,16 @@
-# AuditReady AI
+# AuditReady AI + DevOps Reliability Lab
 
 **AuditReady AI** is a cybersecurity and GRC readiness tool that helps organizations assess their compliance posture, identify control gaps, and generate audit-ready remediation guidance.
 
-The current MVP focuses on **NIST CSF 2.0 readiness** and generates a professional readiness report based on a rules-based scoring engine.
+This project also serves as a **DevOps/SRE Reliability Lab**, demonstrating CI/CD workflows, deployment validation, health checks, troubleshooting documentation, and production-readiness practices.
+
+The current MVP focuses on **NIST CSF 2.0 readiness** and generates a professional readiness report using a rules-based scoring engine.
 
 ---
 
 ## Live Demo
 
-**Live App:** https://auditready-ai-five.vercel.app/
+**Live App:** https://auditready-ai-five.vercel.app/  
 **Repository:** https://github.com/aaileenssyed/auditready-ai
 
 ---
@@ -17,7 +19,7 @@ The current MVP focuses on **NIST CSF 2.0 readiness** and generates a profession
 
 Many small and growing organizations struggle to understand whether they are ready for cybersecurity audits, compliance reviews, or internal security assessments.
 
-AuditReady AI helps simplify that process by allowing users to complete a readiness questionnaire and receive:
+AuditReady AI simplifies that process by allowing users to complete a readiness questionnaire and receive:
 
 - Overall compliance readiness score
 - NIST CSF function-level scores
@@ -34,19 +36,21 @@ The goal is to make compliance readiness easier to understand, more explainable,
 
 ## Why I Built This
 
-I built AuditReady AI as a cybersecurity, GRC, and AI-focused portfolio project.
+I built AuditReady AI as a cybersecurity, GRC, AI, and DevOps-focused portfolio project.
 
 The project combines:
 
 - Cybersecurity frameworks
-- Risk assessment
 - Governance, Risk, and Compliance concepts
 - Security control mapping
+- Risk assessment
 - Rules-based scoring
 - AI-style report generation
 - SaaS-style product design
+- CI/CD and reliability practices
+- Deployment troubleshooting and documentation
 
-This project is designed to show practical skills in security readiness, compliance workflows, frontend development, and product thinking.
+This project is designed to demonstrate practical skills in security readiness, compliance workflows, frontend development, DevOps fundamentals, and product thinking.
 
 ---
 
@@ -104,23 +108,81 @@ If no assessment has been completed, the report page loads a demo organization p
 
 ---
 
+## DevOps / CI-CD / Reliability Features
+
+AuditReady AI is also being used as a DevOps/SRE reliability lab.
+
+Current reliability features include:
+
+- GitHub Actions CI workflow on push and pull request
+- Production build validation using `npm run build`
+- Manual GitHub Actions build workflow
+- Weekly scheduled build health check
+- Vercel production deployment
+- Health check endpoint at `/api/health`
+- Bash-based health check script using `curl`
+- Deployment failure runbook
+- Sample incident postmortem
+- Dockerfile for containerized local production testing
+
+---
+
+## DevOps Workflow
+
+```text
+GitHub Push
+   ↓
+GitHub Actions CI
+   ↓
+Install Dependencies
+   ↓
+Build Production App
+   ↓
+Vercel Deployment
+   ↓
+Health Check Endpoint
+   ↓
+Runbook / Postmortem Documentation
+````
+---
+
+## What This Demonstrates
+
+This project demonstrates:
+
+* Git-based development workflow
+* CI validation
+* Production build troubleshooting
+* Cloud deployment through Vercel
+* Basic health monitoring
+* Bash scripting
+* Docker containerization
+* Reliability documentation
+* Incident response thinking
+* Cybersecurity and compliance control mapping
+---
+
 ## Tech Stack
 
-| Category | Tool |
-|---|---|
-| Framework | Next.js |
-| Language | TypeScript |
-| Styling | Tailwind CSS |
-| UI Components | shadcn/ui |
-| Icons | Lucide React |
-| PDF Export | jsPDF + html2canvas |
-| Hosting | Vercel |
-| Storage in MVP | Browser localStorage |
+| Category         | Tool                 |
+| ---------------- | -------------------- |
+| Framework        | Next.js              |
+| Language         | TypeScript           |
+| Styling          | Tailwind CSS         |
+| UI Components    | shadcn/ui            |
+| Icons            | Lucide React         |
+| PDF Export       | jsPDF + html2canvas  |
+| Hosting          | Vercel               |
+| CI/CD            | GitHub Actions       |
+| Containerization | Docker               |
+| Scripting        | Bash                 |
+| Storage in MVP   | Browser localStorage |
 
 ---
 
 ## How It Works
 
+```text
 Company Profile
       ↓
 NIST CSF Questionnaire
@@ -136,6 +198,7 @@ Risk Summary
 30/60/90-Day Roadmap
       ↓
 PDF Readiness Report
+```
 
 The readiness score is calculated using deterministic rules instead of relying fully on AI. This keeps the scoring process explainable and easier to audit.
 
@@ -159,6 +222,7 @@ Each question is mapped to:
 
 Example control object:
 
+```ts
 {
   id: "PR-001",
   function: "Protect",
@@ -176,6 +240,7 @@ Example control object:
   ],
   remediation: "Enable MFA for all privileged accounts and document exceptions."
 }
+```
 
 ---
 
@@ -192,11 +257,22 @@ Example control object:
 
 ## Project Structure
 
+```text
 auditready-ai/
+  .github/
+    workflows/
+      ci.yml
+      manual-build.yml
+      weekly-health-check.yml
+
   app/
     page.tsx
     layout.tsx
     globals.css
+
+    api/
+      health/
+        route.ts
 
     assessment/
       start/
@@ -232,6 +308,11 @@ auditready-ai/
   data/
     nistQuestions.ts
 
+  docs/
+    architecture.md
+    runbook-vercel-deployment-failure.md
+    incident-postmortem-sample.md
+
   lib/
     scoring.ts
     reportGenerator.ts
@@ -239,6 +320,14 @@ auditready-ai/
 
   public/
     auditready-logo.png
+
+  scripts/
+    check-health.sh
+
+  Dockerfile
+  .dockerignore
+  README.md
+```
 
 ---
 
@@ -275,57 +364,36 @@ Walks users through NIST CSF readiness questions with four answer options:
 
 Generates the compliance readiness report with scoring, gaps, evidence checklist, and remediation roadmap.
 
----
+### Health Check Endpoint
 
-## Roadmap
+Provides a simple application health response at:
 
-### Version 1.1
+```text
+/api/health
+```
 
-* Improve sample report mode
-* Add more NIST CSF questions
-* Add better mobile responsiveness
-* Improve PDF formatting
-* Add report timestamp
-* Add stronger dashboard visuals
+Example response:
 
-### Version 1.2
-
-* Add control severity filters
-* Add evidence status tracking
-* Add downloadable CSV checklist
-* Add risk priority sorting
-* Add clearer scoring explanations
-
-### Version 2.0
-
-* Add CIS Controls mapping
-* Add SOC 2 readiness mode
-* Add framework comparison view
-* Add saved assessments
-
-### Future Versions
-
-* ISO 27001 readiness-lite
-* HIPAA readiness-lite
-* PCI DSS readiness-lite
-* Supabase authentication
-* Evidence upload tracker
-* AI-generated executive summary
-* AI policy recommendation assistant
-* Organization-level report history
+```json
+{
+  "status": "ok",
+  "service": "AuditReady AI",
+  "environment": "production",
+  "timestamp": "2026-05-26T00:00:00.000Z"
+}
+```
 
 ---
 
-## Planned Framework Support
+## DevOps Documentation
 
-| Framework         | Status           |
-| ----------------- | ---------------- |
-| NIST CSF 2.0      | Available in MVP |
-| CIS Controls v8.1 | Planned          |
-| SOC 2             | Planned          |
-| ISO 27001         | Planned          |
-| HIPAA             | Planned          |
-| PCI DSS           | Planned          |
+The `docs/` folder contains reliability and troubleshooting documentation, including:
+
+* Vercel deployment failure runbook
+* Sample incident postmortem
+* Architecture notes
+
+These documents support operational readiness and demonstrate how deployment issues can be investigated, resolved, and documented.
 
 ---
 
@@ -374,16 +442,145 @@ npm run start
 
 ---
 
+## GitHub Actions
+
+This project uses GitHub Actions to validate the production build.
+
+The CI workflow runs on:
+
+* Push to `main` or `master`
+* Pull requests to `main` or `master`
+* Manual workflow dispatch
+
+The workflow installs dependencies and runs:
+
+```bash
+npm run build
+```
+
+This helps catch build errors before deployment.
+
+---
+
+## Health Check Script
+
+A Bash health check script is included in:
+
+```text
+scripts/check-health.sh
+```
+
+Run it with:
+
+```bash
+bash scripts/check-health.sh
+```
+
+Or pass a custom health endpoint:
+
+```bash
+bash scripts/check-health.sh https://auditready-ai-five.vercel.app/api/health
+```
+
+---
+
+## Docker
+
+This project includes a Dockerfile for local production-style testing.
+
+Build the Docker image:
+
+```bash
+docker build -t auditready-ai .
+```
+
+Run the container:
+
+```bash
+docker run -p 3000:3000 auditready-ai
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+Note: Docker Desktop must be installed and running before using Docker commands.
+
+---
+
 ## Deployment
 
 This project is deployed using Vercel.
 
-To deploy:
+Deployment flow:
 
-1. Push the project to GitHub
-2. Import the repository into Vercel
-3. Keep the default Next.js build settings
-4. Deploy
+1. Push code to GitHub
+2. GitHub Actions validates the production build
+3. Vercel builds and deploys the app
+4. The live app can be checked using `/api/health`
+
+---
+
+## Planned Framework Support
+
+| Framework         | Status           |
+| ----------------- | ---------------- |
+| NIST CSF 2.0      | Available in MVP |
+| CIS Controls v8.1 | Planned          |
+| SOC 2             | Planned          |
+| ISO 27001         | Planned          |
+| HIPAA             | Planned          |
+| PCI DSS           | Planned          |
+
+---
+
+## Roadmap
+
+### Version 1.1
+
+* Improve sample report mode
+* Add more NIST CSF questions
+* Add better mobile responsiveness
+* Improve PDF formatting
+* Add report timestamp
+* Add stronger dashboard visuals
+
+### Version 1.2
+
+* Add control severity filters
+* Add evidence status tracking
+* Add downloadable CSV checklist
+* Add risk priority sorting
+* Add clearer scoring explanations
+
+### Version 2.0
+
+* Add CIS Controls mapping
+* Add SOC 2 readiness mode
+* Add framework comparison view
+* Add saved assessments
+
+### DevOps / Reliability Roadmap
+
+* Improve live health check workflow
+* Add architecture diagram
+* Add deployment notes for Vercel
+* Add AWS refresh lab notes
+* Add Terraform basics later
+* Add monitoring and logging notes
+
+### Future Versions
+
+* ISO 27001 readiness-lite
+* HIPAA readiness-lite
+* PCI DSS readiness-lite
+* Supabase authentication
+* Evidence upload tracker
+* AI-generated executive summary
+* AI policy recommendation assistant
+* Organization-level report history
 
 ---
 
@@ -405,12 +602,24 @@ Organizations should consult qualified cybersecurity, legal, and compliance prof
 
 ## Author
 
-Built by **Aaileen Sarwar Syed & Rayyan Sarwar Syed**
+Built by **Aaileen Sarwar Syed**
 
-Cybersecurity, IT Support, GRC, and AI-focused portfolio project.
+Cybersecurity, IT Support, GRC, AI, and DevOps-focused portfolio project.
 
 ---
 
 ## License
 
 This project is intended as a public portfolio and educational project.
+
+You may use, study, and adapt the code for learning purposes. Add a formal license later if this project is maintained as a formal open-source tool.
+
+````
+
+Then run:
+
+```bash
+git add README.md
+git commit -m "Clean and restructure README"
+git push
+````
