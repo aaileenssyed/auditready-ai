@@ -1,3 +1,4 @@
+![AuditReady AI Build Check](https://github.com/aaileenssyed/auditready-ai/actions/workflows/ci.yml/badge.svg)
 # AuditReady AI
 
 **AuditReady AI** is a cybersecurity and GRC readiness tool that helps organizations assess their compliance posture, identify control gaps, and generate audit-ready remediation guidance.
